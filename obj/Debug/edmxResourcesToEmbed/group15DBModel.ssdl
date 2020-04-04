@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="group15DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="forumTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="articleID" Type="int" />
+    <Property Name="title" Type="nvarchar" MaxLength="200" />
+    <Property Name="description" Type="nvarchar" MaxLength="2000" />
+    <Property Name="major" Type="nvarchar" MaxLength="100" />
+    <Property Name="module" Type="nvarchar" MaxLength="100" />
+    <Property Name="postedBy" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="restaurantTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="restaurantName" Type="nvarchar" MaxLength="200" />
+    <Property Name="location" Type="nvarchar" MaxLength="100" />
+    <Property Name="option1" Type="nvarchar" MaxLength="200" />
+    <Property Name="option1Price" Type="float" />
+    <Property Name="option1PriceWithDiscount" Type="float" />
+    <Property Name="option2" Type="nvarchar" MaxLength="200" />
+    <Property Name="option2Price" Type="float" />
+    <Property Name="option2PriceWithDiscount" Type="float" />
+  </EntityType>
+  <Function Name="getForums" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="articleID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="getRestaurants" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="location" Type="nvarchar" Mode="In" />
+    <Parameter Name="budget" Type="float" Mode="In" />
+  </Function>
+  <Function Name="insertForum" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="articleID" Type="int" Mode="In" />
+    <Parameter Name="title" Type="nvarchar" Mode="In" />
+    <Parameter Name="description" Type="nvarchar" Mode="In" />
+    <Parameter Name="major" Type="nvarchar" Mode="In" />
+    <Parameter Name="module" Type="nvarchar" Mode="In" />
+    <Parameter Name="postedBy" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="insertRestaurant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="restaurantName" Type="nvarchar" Mode="In" />
+    <Parameter Name="location" Type="nvarchar" Mode="In" />
+    <Parameter Name="option1" Type="nvarchar" Mode="In" />
+    <Parameter Name="option1Price" Type="float" Mode="In" />
+    <Parameter Name="option1PriceWithDiscount" Type="float" Mode="In" />
+    <Parameter Name="option2" Type="nvarchar" Mode="In" />
+    <Parameter Name="option2Price" Type="float" Mode="In" />
+    <Parameter Name="option2PriceWithDiscount" Type="float" Mode="In" />
+  </Function>
+  <EntityContainer Name="group15DBModelStoreContainer">
+    <EntitySet Name="forumTable" EntityType="Self.forumTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="restaurantTable" EntityType="Self.restaurantTable" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

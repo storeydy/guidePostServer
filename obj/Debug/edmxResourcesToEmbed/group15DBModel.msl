@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="group15DBModelStoreContainer" CdmEntityContainer="group15DBEntities">
+    <EntitySetMapping Name="forumTables">
+      <EntityTypeMapping TypeName="group15DBModel.forumTable">
+        <MappingFragment StoreEntitySet="forumTable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="articleID" ColumnName="articleID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="module" ColumnName="module" />
+          <ScalarProperty Name="postedBy" ColumnName="postedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="restaurantTables">
+      <EntityTypeMapping TypeName="group15DBModel.restaurantTable">
+        <MappingFragment StoreEntitySet="restaurantTable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="restaurantName" ColumnName="restaurantName" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="option1Price" ColumnName="option1Price" />
+          <ScalarProperty Name="option1PriceWithDiscount" ColumnName="option1PriceWithDiscount" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option2Price" ColumnName="option2Price" />
+          <ScalarProperty Name="option2PriceWithDiscount" ColumnName="option2PriceWithDiscount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getForums" FunctionName="group15DBModel.Store.getForums">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="group15DBModel.getForums_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="articleID" ColumnName="articleID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="module" ColumnName="module" />
+          <ScalarProperty Name="postedBy" ColumnName="postedBy" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getRestaurants" FunctionName="group15DBModel.Store.getRestaurants">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="group15DBModel.getRestaurants_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="restaurantName" ColumnName="restaurantName" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="option1" ColumnName="option1" />
+          <ScalarProperty Name="option1Price" ColumnName="option1Price" />
+          <ScalarProperty Name="option1PriceWithDiscount" ColumnName="option1PriceWithDiscount" />
+          <ScalarProperty Name="option2" ColumnName="option2" />
+          <ScalarProperty Name="option2Price" ColumnName="option2Price" />
+          <ScalarProperty Name="option2PriceWithDiscount" ColumnName="option2PriceWithDiscount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="insertForum" FunctionName="group15DBModel.Store.insertForum" />
+    <FunctionImportMapping FunctionImportName="insertRestaurant" FunctionName="group15DBModel.Store.insertRestaurant" />
+  </EntityContainerMapping>
+</Mapping>

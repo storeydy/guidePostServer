@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="group15DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="forumTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="articleID" Type="Int32" />
+    <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="major" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="module" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="postedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="restaurantTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="restaurantName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="option1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option1Price" Type="Double" />
+    <Property Name="option1PriceWithDiscount" Type="Double" />
+    <Property Name="option2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="option2Price" Type="Double" />
+    <Property Name="option2PriceWithDiscount" Type="Double" />
+  </EntityType>
+  <EntityContainer Name="group15DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="forumTables" EntityType="Self.forumTable" />
+    <EntitySet Name="restaurantTables" EntityType="Self.restaurantTable" />
+    <FunctionImport Name="getForums" ReturnType="Collection(group15DBModel.getForums_Result)">
+      <Parameter Name="articleID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getRestaurants" ReturnType="Collection(group15DBModel.getRestaurants_Result)">
+      <Parameter Name="location" Mode="In" Type="String" />
+      <Parameter Name="budget" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="insertForum">
+      <Parameter Name="articleID" Mode="In" Type="Int32" />
+      <Parameter Name="title" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+      <Parameter Name="major" Mode="In" Type="String" />
+      <Parameter Name="module" Mode="In" Type="String" />
+      <Parameter Name="postedBy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertRestaurant">
+      <Parameter Name="restaurantName" Mode="In" Type="String" />
+      <Parameter Name="location" Mode="In" Type="String" />
+      <Parameter Name="option1" Mode="In" Type="String" />
+      <Parameter Name="option1Price" Mode="In" Type="Double" />
+      <Parameter Name="option1PriceWithDiscount" Mode="In" Type="Double" />
+      <Parameter Name="option2" Mode="In" Type="String" />
+      <Parameter Name="option2Price" Mode="In" Type="Double" />
+      <Parameter Name="option2PriceWithDiscount" Mode="In" Type="Double" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="getForums_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="articleID" Nullable="true" />
+    <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="description" Nullable="true" MaxLength="2000" />
+    <Property Type="String" Name="major" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="module" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="postedBy" Nullable="true" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="getRestaurants_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="restaurantName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="location" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="option1" Nullable="true" MaxLength="200" />
+    <Property Type="Double" Name="option1Price" Nullable="true" />
+    <Property Type="Double" Name="option1PriceWithDiscount" Nullable="true" />
+    <Property Type="String" Name="option2" Nullable="true" MaxLength="200" />
+    <Property Type="Double" Name="option2Price" Nullable="true" />
+    <Property Type="Double" Name="option2PriceWithDiscount" Nullable="true" />
+  </ComplexType>
+</Schema>
