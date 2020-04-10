@@ -6,9 +6,11 @@ using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
 using databaseLayer;
+using System.Web.Http.Cors;
 
 namespace appServer.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ForumController : ApiController
     {
         [Route("api/forum/GetAll")]
@@ -20,7 +22,7 @@ namespace appServer.Controllers
         }
 
         // Query this by https://localhost:44349/api/forum/GetSpecificForum?articleID=4
-        [Route("api/forum/5GetSpecificForum")]                                               //For tapping on a post to see all comments
+        [Route("api/forum/GetSpecificForum")]                                               //For tapping on a post to see all comments
         public List<getForums_Result> GetSpecificForum(int? articleID)
         {
             connectionToDB connection = new connectionToDB();
@@ -36,71 +38,42 @@ namespace appServer.Controllers
             return data;
         }
 
-        //// Query this by https://localhost:44349/api/forum/GetBy?major=Engineering&module=Software+Design+Analysis
-        //[Route("api/forum/GetByFilters")]
-        //public IEnumerable<string> GetByFilters(string major, string module)
-        //{
-            
-        //}
-
         [Route("api/Forum/PostReview")]
         [HttpPost]
         public string InsertReview(dynamic dataArray)
         {
             int articleID = dataArray[0].articleID;
-            string category = "Reviews";
+            string category = "Review";
             string title = dataArray[0].title;
             string description = dataArray[0].description;
-            string major = null;
-            string module = null;
             string postedBy = dataArray[0].postedBy;
             int? restaurantID = dataArray[0].restaurantID;
-            float? stars = dataArray[0].stars;
+            double? stars = dataArray[0].stars;
             connectionToDB connection = new connectionToDB();
-            string result = connection.Forum_Post(articleID, category, title, description, major, module, postedBy, restaurantID, stars).ToString();
+            string result = connection.Forum_Post(articleID, category, title, description, postedBy, restaurantID, stars).ToString();
 
             return result;
         }
-        [Route("api/Forum/PostForum")]
-        [HttpPost]
-        public string InsertForum(dynamic dataArray)
-        {
-            int articleID = dataArray[0].articleID;
-            string category = dataArray[0].category;            //Social, Feedback, Advertisements, Reviews, Misc
-            string title = dataArray[0].title;
-            string description = dataArray[0].location;
-            string major = dataArray[0].major;
-            string module = dataArray[0].module;
-            string postedBy = dataArray[0].postedBy;
+        //[Route("api/Forum/PostForum")]                    OLD VERSION - we had planned on adding a forum for social posts etc.
+        //[HttpPost]
+        //public string InsertForum(dynamic dataArray)
+        //{
+        //    int articleID = dataArray[0].articleID;
+        //    string category = dataArray[0].category;            //Social, Feedback, Advertisements, Reviews, Misc
+        //    string title = dataArray[0].title;
+        //    string description = dataArray[0].location;
+        //    string major = dataArray[0].major;
+        //    string module = dataArray[0].module;
+        //    string postedBy = dataArray[0].postedBy;
 
-            int? restaurantID = dataArray[0].restaurantID;    //Only if this is a review
-            float? stars = dataArray[0].stars;                      //for a restaurant or cafe  (NULL OTHERWISE)
+        //    int? restaurantID = dataArray[0].restaurantID;    //Only if this is a review
+        //    float? stars = dataArray[0].stars;                      //for a restaurant or cafe  (NULL OTHERWISE)
 
              
-            connectionToDB connection = new connectionToDB();
-            string result = connection.Forum_Post(articleID, category, title, description, major, module, postedBy, restaurantID, stars).ToString();
-
-            return result;
-        }
-
-        //public int? calculateLatestArticleID()
-        //{
         //    connectionToDB connection = new connectionToDB();
-        //    List<getForums_Result> allForums = connection.Forums_get(null, null);
-        //    allForums.Reverse();
-        //    int? currentHighest = 1;
-        //    return allForums[0].articleID;
-
-        //    foreach (List<getForums_Result> entry  in allForums)
-        //    {
-        //        if (entry.articleID > currentHighest)
-        //        {
-        //            currentHighest = entry.articleID;
-        //        }
-        //    }
-        //    return maxAge;
-
+        //    string result = connection.Forum_Post(articleID, category, title, description, major, module, postedBy, restaurantID, stars).ToString();
+        //    //
+        //    return result;
         //}
-
     }
 }

@@ -11,17 +11,13 @@ namespace coffeeAppServer1.Controllers
 {
 
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     public class UsersController : ApiController
     {
-        //[Route("api/restaurants/GetByFilters")]
-        //public IEnumerable<string> GetByFilters(string major, string module)
-        //{
-
-        //    return new string[] { "Restaurant at that location" };
-        //}
 
         [Route("api/Users/Register")]
         [HttpPost]
+        [AllowAnonymous]
         public string RegisterUser(dynamic dataArray)
         {
             string username = dataArray[0].username;
@@ -34,17 +30,10 @@ namespace coffeeAppServer1.Controllers
             string result = connection.User_Post(username, email, password
              , studentNumber, major).ToString();
             return result;
-            //string restaurantName = dataArray[0].restaurantname;
-            //float stars = dataArray[0].stars;
-            
-
-          //  return result;
-
         }
+
         [Route("api/Users/LogIn")]
         [HttpGet]
-        [EnableCors(origins: "*", headers: "*", methods: "*")]
-        [AllowAnonymous]
         public int LogInUser(string userName, string password)
         {
             connectionToDB connection = new connectionToDB();
